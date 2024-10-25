@@ -1,0 +1,2 @@
+0 Control remoto
+1 Ningún control remoto

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Animales en la Granja</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2024/01/09/14/44/cow-8497722_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 100px auto;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .animal {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .animal img {
+            width: 100px;
+            height: auto;
+        }
+
+        .status {
+            font-size: 1.2em;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+    </style>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const socket = io();
+
+            // Verifica si la conexión con Socket.IO es exitosa
+            socket.on('connect', () => {
+                console.log('Conectado a Socket.IO');
+            });
+
+            // Escucha el evento 'object_detected' del servidor
+            socket.on('object_detected', data => {
+                console.log('Datos recibidos:', data);
+                document.getElementById('status').innerText = data.message;
+            });
+
+            // Maneja desconexiones
+            socket.on('disconnect', () => {
+                console.log('Desconectado de Socket.IO');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Granja Inteligente</h1>
+        <p id="status" class="status">Esperando detección de animales...</p>
+        <div class="animal">
+            <img src="https://png.pngtree.com/png-vector/20240607/ourmid/pngtree-understanding-the-iconic-black-and-white-cow-breed-png-image_12644282.png" alt="Vaca">
+            <img src="https://png.pngtree.com/png-clipart/20230528/ourmid/pngtree-chicken-hen-on-transparent-background-png-image_7109976.png" alt="Gallina">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/320/534/non_2x/bay-sport-horse-isolated-on-transparent-background-generate-ai-free-png.png" alt="Caballo">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Granja Inteligente - Proyecto de Detección de Animales</p>
+    </footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Animales en la Granja</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2024/01/09/14/44/cow-8497722_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 100px auto;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px #000;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        .status {
+            font-size: 1.2em;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Granja Inteligente</h1>
+        <p id="status" class="status">Esperando detección de animales...</p>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const socket = io();
+
+            // Verificar conexión
+            socket.on('connect', () => {
+                console.log('Conectado a Socket.IO');
+            });
+
+            // Escuchar evento de detección
+            socket.on('object_detected', data => {
+                console.log('Datos recibidos:', data);
+                document.getElementById('status').innerText = data.message;
+            });
+
+            // Verificar desconexión
+            socket.on('disconnect', () => {
+                console.log('Desconectado de Socket.IO');
+            });
+        });
+    </script>
+</body>
+</html>
